@@ -39,9 +39,9 @@ npm install
 #### initialiser un projet
 node init
 
-il va créer un package.json avec le nom du projet son point d'entrer du projet de node.
+Il va créer un package.json avec le nom du projet son point d'entrer du projet de node.
 
-#### installation des dependences npm
+#### installation des dépendances npm
 npm install [la dependences à installer]
 ou
 npm i [la dependences à installer]
@@ -51,7 +51,7 @@ npm install [la dependences à installer] --save-dev
 ou
 npm i [la dependences à installer] --save-dev
 
-doc de npm : https://docs.npmjs.com/cli/install
+Doc de npm : https://docs.npmjs.com/cli/install
 
 ###### Il est fortement conseillé d'utiliser yarn de nos jours pour administer les packages des dépendences.
 
@@ -67,5 +67,15 @@ yarn add [la dependences à installer]
 ###### ajouter une dependences au projet uniquement en dev
 yarn add [la dependences à installer] --dev
 
-doc de yarn :: https://yarnpkg.com/lang/en/docs/cli/add/
+Doc de yarn : https://yarnpkg.com/lang/en/docs/cli/add/
 
+##### comment créer des taches d'automatisation
+Gulp est un gestionnaire de taches.
+Vous pouvez l'installer en global ou en local. Il est préféré de l'installer en local pour qu'un notre développer qui télécharge le projet puisse l'avoir dans les dépendances du projet avec un simple "npm install" avec la bonne version.
+Pour l'installer -> npm i gulp --save-dev
+
+###### gulp 
+Pour lancer gulp on peut inscrire dans le cmd à la racine du projet : node_modules/.bin/gulp
+Ou bien si on l'a installé en global faire dans le cmd à la racine du projet : gulp
+
+(À suivre)
