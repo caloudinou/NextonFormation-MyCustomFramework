@@ -1,24 +1,24 @@
 # NextonFormation-MyCustomFramework
 
-#### travail à effectuer :
-###### créer un mini framework nexton utilisant :
-  - systeme de route
+#### Travail à effectuer :
+###### Créer un mini framework nexton utilisant :
+  - système de route
   - autoLoad de components et de service
-    créer à l'aide du mini framework nexton, une application de présentation de nexton.
+    Créer à l'aide du mini framework nexton, une application de présentation de nexton :
     avec une homepage et un about, un header, un footer, un bloc contact avec une overture de pop-in
     
-    pour les plus motiver :
-    créer un components header pour le site
-    creer mettre un formulaire dans la partie about
-    rajouter du contenu et du text
+    Pour les plus motiver :
+    Créer un components header pour le site
+    Créer mettre un formulaire dans la partie about
+    Rajouter du contenu et du texte
 
 ###### Automatisation des taches (taches gulp)
-  deployemnt en prod dans un dossier dist
+  Déploiement en prod dans un dossier dist
   watch
-  compilation css
-  minification js html css
-  le plus pour les motivés :
-  - ligne de commande pour génerer des components / services / helper
+  Compilation css
+  Minification js html css
+  Les plus pour les motivés :
+  - ligne de commande pour générer des components / services / helper
   
 #### merci d'utiliser vos branches pour rendre l'exercice ;)
   
