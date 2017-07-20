@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--//déclarer le shadow-dom dans le html-->
+    <app-gen-list data-header='{"text":"TITLE QUI DECHIRE", "url": "http://toto.com"}'></app-gen-list>
+
+    <script>
+        /**
+         * Exemple d'auto load de components
+         */
+        class autoLoadElement {
+          constructor(param = {components:[], services:[], helpers:[]}){
+            this._components=param.components;
+            this.services= param.services;
+            this.helpers=param.helpers;
+            this.initComponents();
+          }
+          initComponents(){
+            // Define the new element
+            window.addEventListener('DOMContentLoaded', () => {
+              this._components.forEach((elt)=>{
+                customElements.define(elt.component.nameElement, elt);
+              });
+            }, true);
+          }
+        }
+        /**
+         * components with attach ShadowDom
+         */
+      class GenList extends HTMLElement {
+        constructor() {
+          /**
+           * Always call parent method with super first
+           */
+          super();
+
+          /**
+           * name component
+           */
+          this._url = JSON.parse(this.getAttribute('data-header').toString()).url||'';
+          this._title = JSON.parse(this.getAttribute('data-header').toString()).text||'';
+
+          /**
+           * Create a shadow root
+           */
+          this._shadow = this.attachShadow({mode: 'open'});
+
+          /**
+           * Load content in the ElementHTML
+           */
+          this.loadContent(this.mustacheReplace(GenList.component.template));
+
+        }
+
+        /**
+         * static variables of this component
+         * it's sample example
+         * @returns {{nameElement: string, template: string}}
+         */
+        static get component(){
+          return {
+            nameElement : 'app-gen-list',
+            template: `<header>
+                        <h1 click="alert({{url}})">{{title}}</h1>
+                        <h2>${this.subTitle}</h2>
+                      </header>`
+          };
+        }
+        /**
+         * public subtitle
+         * @return string
+         */
+        static get subTitle(){
+          return 'YATTA!!'
+        }
+      /**
+       * title
+       * @return string
+       */
+       get title(){
+        return this._title;
+      }
+      /**
+       * url
+       * @return string
+       */
+      get url(){
+        return this._url;
+      }
+
+      /**
+       * mustache convert template
+       * @param template
+       * @returns {*}
+       */
+      mustacheReplace(template){
+        /**
+         * regex
+         */
+        let reg = /{{\s*([^}]+)\s*}}/g;
+        /**
+         * clone variable
+         * @type {*}
+         */
+        let ObjTemplate = Object.assign({}, {template:template});
+        let item;
+        /**
+         * on remplace les element en {{xx}} par la property
+         */
+        while (item = reg.exec(template)){
+          ObjTemplate.template = ObjTemplate.template.replace(item[0], this[item[1]]);
+        }
+        /**
+         * On return les property
+         */
+        return ObjTemplate.template;
+      }
+      /**
+       * draft de load content
+       */
+        loadContent(template){
+          // Create a standard li element and set it's content.
+          this._element = document.createElement('section');
+          this._element.innerHTML = template;
+            // Add the element to the shadow root.
+            this._shadow.appendChild(this._element);
+
+            /**
+             * add onclick on attribut click and callBack value attr
+             * @param e
+             */
+            this._element.querySelector('[click]').onclick = (e) => {
+
+              let property = /\s*([^]+)\s*\(/g.exec(e.path[0].getAttribute('click'))[1],
+                  args = /\(\s*([^]+)\s*\)/g.exec(e.path[0].getAttribute('click'))[1];
+                  window[property](args);
+            };
+        }
+      }
+        /**
+         * launch
+         */
+      new autoLoadElement({
+        components: [GenList],
+        services: [],
+        helpers: []
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <div id="nexton-app">Le Text sera remplacer</div>
+  //Attention !! document shadow valide que sur chrome
+  <script>
+    /**
+     * Creation du components nexton-app
+     */
+    let root = document.getElementById("nexton-app").createShadowRoot();
+    /**
+     * create a element section
+     * @type {Element}
+     */
+    let content = document.createElement("section");
+    /**
+     * inject templating html in section
+     * @type {string}
+     */
+    content.innerHTML=`
+            <h1> Nexton - App</h1>
+            <p>VIVE NEXTON</p>
+    `;
+    /**
+     * add section in root
+     */
+    root.appendChild(content);
+  </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "prod":{
+    "base" : "./dist",
+    "assets": "./dist/assets",
+    "src": "./dist/src"
+  },
+  "dev":{
+    "base" : "./app",
+    "assets": "./app/assets",
+    "src": "./app/src"
+  },
+  "tmp" :{
+    "base" : "./tmp",
+    "assets": "./tmp/assets",
+    "src": "./tmp/src"
+  }
+}

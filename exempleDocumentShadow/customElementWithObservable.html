@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <!--//déclarer le shadow-dom dans le html-->
+    <best-element name="Jeremy"></best-element>
+
+    <!--//injection des custom element depuis le JS -->
+    <div id="mega"></div>
+
+    <script>
+      /**
+       * inject the best-element w
+       */
+      class elementAttributeChange{
+          constructor(tab = ['Tata','Titi', 'Toto','Tata','Tete']){
+            this._eTab = tab[Symbol.iterator]();
+            this._nameElement = 'best-element';
+            this._id = document.querySelectorAll(`${this._nameElement}`).length + 1;
+
+            /**
+             *  exemple d'utilisation de promise
+             */
+            this.createNewElement().then(
+                (success)=>{
+                  this.autoChangeValue();
+                },
+                (error)=>{
+                  console.error(error);
+                });
+          }
+
+          /**
+           * create the best-element with module id and name attribut
+           * exemple: de promise pour gérer l'async
+           * @returns {Promise}
+           */
+          createNewElement(){
+            return new Promise(
+                (resolve, reject) => {
+                  try {
+                    let bestElt = document.createElement(this._nameElement);
+                    bestElt.id= `module${this._id}`;
+                    bestElt.setAttribute('name', this._eTab.next().value);
+                    document.getElementById('mega').appendChild(bestElt);
+                    resolve('element create');
+                  }catch (e){
+                    reject(`erreur:: ${e}`);
+                  }
+                }
+            );
+
+          }
+
+          /**
+           * change the value of name attribut on the current best-element
+           * @returns {number}|intervale
+           */
+          autoChangeValue(){
+            return this.changeValue = setInterval(() => {
+              let value = this._eTab.next().value;
+              if(value) {
+                document.querySelector(`${this._nameElement}#module${this._id}`).setAttribute('name', value)
+              } else {
+                clearInterval(this.changeValue);
+              }
+            }, 1000);
+          }
+
+        }
+        /**
+         * exemple tab de reference
+         */
+        let paramA = ['mohamed','tao','yuri','stephane'];
+        let paramB = ['jeremy','maxime','lionel','yann'];
+        let paramC = ['julie','nathalie','monica','kim'];
+
+        new elementAttributeChange();
+        new elementAttributeChange(paramB);
+        new elementAttributeChange(['pascal','alexandre','carla','guillaume',...paramB]);
+        new elementAttributeChange([...paramB,...paramC,...paramA]);
+
+
+
+    /**
+     * Creation d'un Element "best-element" avec l'attribut name en oberservable
+     */
+      class BestElement extends HTMLElement {
+      /**
+       * Monitor the 'name' attribute for changes.
+       */
+      static get observedAttributes() {return ['name']; }
+
+      /**
+       * Respond to attribute changes.
+       * @param attr
+       * @param oldValue
+       * @param newValue
+       */
+        attributeChangedCallback(attr, oldValue, newValue) {
+          if (attr === 'name') this.textContent = `${oldValue||'Thor'} est meilleur que ${newValue}`;
+        }
+      }
+
+      // Define the new element
+      customElements.define('best-element', BestElement);
+    </script>
+</body>
+</html>
