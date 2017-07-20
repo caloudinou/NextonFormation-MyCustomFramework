@@ -51,6 +51,21 @@ npm install [la dependences à installer] --save-dev
 ou
 npm i [la dependences à installer] --save-dev
 
+doc de npm : https://docs.npmjs.com/cli/install
+
 ###### Il est fortement conseillé d'utiliser yarn de nos jours pour administer les packages des dépendences.
 
 #### installation et utilisation de yarn
+##### installation :
+Yarn au mm titre que npm s'intalle en global.
+npm i yarn -g 
+
+
+##### utilisation de yarn
+###### ajouter une dependence au projet
+yarn add [la dependences à installer]
+###### ajouter une dependences au projet uniquement en dev
+yarn add [la dependences à installer] --dev
+
+doc de yarn :: https://yarnpkg.com/lang/en/docs/cli/add/
+
