@@ -36,21 +36,21 @@ npm install
 
 # Cours
 ## Rappel :
-###### initialiser un projet
+#### initialiser un projet
 node init
 
 il va créer un package.json avec le nom du projet son point d'entrer du projet de node.
 
-###### installation de dependences npm
+#### installation des dependences npm
 npm install [la dependences à installer]
 ou
 npm i [la dependences à installer]
 
-###### installation de dependences npm utilisé quand dev
+#### installation des dependences npm utilisé quand dev
 npm install [la dependences à installer] --save-dev
 ou
 npm i [la dependences à installer] --save-dev
 
-Il est fortement conseillé d'utiliser yarn de nos jours pour administer les packages des dépendences.
+###### Il est fortement conseillé d'utiliser yarn de nos jours pour administer les packages des dépendences.
 
-###### installation et utilisation de yarn
+#### installation et utilisation de yarn
